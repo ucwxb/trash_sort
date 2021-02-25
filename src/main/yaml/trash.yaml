@@ -1,0 +1,11 @@
+harmful_waste: 1
+kitchen_waste: 2
+other_waste: 3
+recyclable_waste: 4
+vegetable: 21
+fruit: 22
+bottle: 41
+can: 42
+cigarette: 31
+pottery: 32
+battery: 11

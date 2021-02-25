@@ -1,0 +1,11 @@
+<launch>
+    <include file="$(find main)/launch/trash.launch"/>
+    
+    <!--
+	<node name="vision_node" pkg="vision" type="vision_main.py" output="screen"/>
+    <node name="urg_node" pkg="urg_node" type="urg_node" args="_ip_address:=192.168.0.10"/>
+    <node name = "Position" pkg = "lidar_position" type="lidarPosition.py" output = "screen"/>
+    <node name="findpot_server" pkg="lidar_findpot" type="findpot_server.py" output="screen"/>
+    <node name="ctrl_bridge" pkg="communication_controller" type="test.py" output="screen"/>
+	-->
+</launch>

@@ -1,0 +1,10 @@
+build/
+devel/
+CMakeLists.txt
+venv
+.catkin_workspace
+.catkin_tools
+.idea
+.code
+__pycache__/
+v5l-last.pt
