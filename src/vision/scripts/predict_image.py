@@ -54,6 +54,10 @@ class detectImage:
             *xyxy, conf, cls = pred
             label = '%s %.2f' % (self.names[int(cls)], conf)
             plot_one_box(xyxy, self.detect_img, label=label, color=self.colors[int(cls)])
+
+            vision_detect_service_res.isFind = 1
+            vision_detect_service_res.detect_res = cls
+            vision_detect_service_res.conf = conf
                 #     res_xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4))).view(-1).tolist()
                 #     res_xyxy = torch.tensor(xyxy).view(-1).tolist()
 

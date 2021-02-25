@@ -29,36 +29,19 @@ class VisionNode:
         tpm = VisionDetectServiceResponse()
         tpm.isFind = 0
         tpm.detect_res = 0
-        tpm.detect_res_string = ""
+        tpm.conf = 0
         self.vision_detect_service_res = tpm
 
     def Callback(self, data):
         self.create_vision_detect_service_response()
-
+        _, self.frame = self.cap.read()
         self.yolov5Module.detect(self.frame,self.vision_detect_service_res) #传入图片以及平面图像坐标系下的点击位置，识别
+
         
-        
-        if(self.yolov5Module.update == 1): #检测结果是否更新
-            self.yolov5Module.update = 0
-            vision_src_res.isFind = 1 #标记找到
-
-            redPot_robot  = self.cameraInfo.Tr_img2global(self.yolov5Module.res_red_xywh[0],self.yolov5Module.res_red_xywh[1])  #相机的global是机器人坐标系！！！！！
-            bluePot_robot = self.cameraInfo.Tr_img2global(self.yolov5Module.res_blue_xywh[0],self.yolov5Module.res_blue_xywh[1])  #相机的global是机器人坐标系！！！！！
-
-            srv_res.append(redPot_robot[0])
-            srv_res.append(redPot_robot[1])
-            srv_res.append(bluePot_robot[0])
-            srv_res.append(bluePot_robot[1])
-
-            vision_src_res.res = srv_res
-            return vision_src_res#计算鼠标点击位置的对应坐标(图像上的x, 图像上的y, 目标物已知高度z坐标)
-        vision_src_res.isFind = 0
-        vision_src_res.res = srv_res
-        return vision_src_res
+        return self.vision_detect_service_res
         
     def MainLoop(self):
         while not rospy.is_shutdown():
-            _, self.frame = self.cap.read()
             self.rate.sleep()
             
             

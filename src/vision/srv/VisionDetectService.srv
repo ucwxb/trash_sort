@@ -1,4 +1,4 @@
 ---
 uint8 isFind
 uint16 detect_res
-string detect_res_string
+float conf
