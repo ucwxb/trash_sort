@@ -1,6 +1,5 @@
 build/
 devel/
-CMakeLists.txt
 venv
 .catkin_workspace
 .catkin_tools

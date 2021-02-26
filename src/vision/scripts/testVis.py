@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #coding:utf-8
 import rospy
-from vision.srv import VisionDetectService,VisionDetectServiceResponse,VisionDetectServicesRequest
+from vision.srv import VisionDetectService,VisionDetectServiceResponse,VisionDetectServiceRequest
 import json
 
 class VisionNode:
@@ -9,7 +9,7 @@ class VisionNode:
         rospy.wait_for_service('/vision_service')
         rospy.init_node('test_vision_node', anonymous = True)          #创建节点
         
-        self.rate = rospy.Rate(1)       #20Hz     
+        self.rate = rospy.Rate(2000)       #20Hz     
         self.service_testVis = rospy.ServiceProxy('/vision_service', VisionDetectService)
     def MainLoop(self):
         while not rospy.is_shutdown():

@@ -5,7 +5,7 @@ import cv2
 import os
 from predict_image import detectImage
 import json
-from vision.srv import VisionDetectService,VisionDetectServiceResponse,VisionDetectServicesRequest
+from vision.srv import VisionDetectService,VisionDetectServiceResponse,VisionDetectServiceRequest
 class VisionNode:
     def __init__(self):
     
@@ -13,12 +13,12 @@ class VisionNode:
         
         self.rate = rospy.Rate(20)
 
-        self.cap = cv2.VideoCapture(0)  #临时调试用
+        self.cap = cv2.VideoCapture(4)  #临时调试用
         
         #self.cap.set(3,480) #调整相机画幅大小，上位机不可用
         #self.cap.set(4,640)
         self.packagePath = rospy.get_param("/pkg_path/vision")
-        self.yolov5Module = detectImage(os.path.join(self.packagePath, 'scripts/yolov5/v5l-last.pt'))  #加载模型
+        self.yolov5Module = detectImage(os.path.join(self.packagePath, 'scripts/v5l-last.pt'))  #加载模型
         rospy.Service('/vision_service',VisionDetectService, self.Callback)  #建立服务
 
         # rospy.wait_for_service('vision_service')
