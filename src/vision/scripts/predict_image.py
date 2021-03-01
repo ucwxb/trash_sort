@@ -58,6 +58,7 @@ class detectImage:
             vision_detect_service_res.isFind = 1
             vision_detect_service_res.detect_res = cls
             vision_detect_service_res.conf = conf
+        return vision_detect_service_res
                 #     res_xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4))).view(-1).tolist()
                 #     res_xyxy = torch.tensor(xyxy).view(-1).tolist()
 

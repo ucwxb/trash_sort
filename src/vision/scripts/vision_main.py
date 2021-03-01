@@ -5,7 +5,7 @@ import cv2
 import os
 from predict_image import detectImage
 import json
-from vision.srv import VisionDetectService,VisionDetectServiceResponse,VisionDetectServiceRequest
+from vision.srv import *
 class VisionNode:
     def __init__(self):
     
@@ -35,8 +35,8 @@ class VisionNode:
     def Callback(self, data):
         self.create_vision_detect_service_response()
         _, self.frame = self.cap.read()
-        self.yolov5Module.detect(self.frame,self.vision_detect_service_res) #传入图片以及平面图像坐标系下的点击位置，识别
-
+        self.vision_detect_service_res = self.yolov5Module.detect(self.frame,self.vision_detect_service_res) #传入图片以及平面图像坐标系下的点击位置，识别
+        #data-base
         
         return self.vision_detect_service_res
         

@@ -3,6 +3,8 @@
 
     <param name="/pkg_path/vision" value="$(find vision)" />
     <node name = "vision_node" pkg = "vision" type="vision_main.py" output = "screen"/>
+    <!--
     <node name = "test_vision_node" pkg = "vision" type="testVis.py" output = "screen"/>
+    -->
 
 </launch>

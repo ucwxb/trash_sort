@@ -3,7 +3,7 @@
 import pymysql
 import datetime
 import cv2
-
+import rospy
 class filter_sql_cmd:
     def create_sql(self):
         pass
