@@ -9,13 +9,13 @@ class filter_sql_cmd:
         pass
 
 
-class trashsql:
+class sql_manage:
     def __init__(self,host,user,password,db_name,port = 3306,charset = 'utf8'):
         self.host = host
         self.user = user
         self.password = password
         self.db_name = db_name
-        self.port = port
+        self.port = int(port)
         self.charset = charset
 
         self.db = pymysql.connect(host=self.host,
