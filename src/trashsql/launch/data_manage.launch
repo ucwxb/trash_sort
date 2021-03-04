@@ -1,13 +1,11 @@
 <launch>
-
-
-    <param name="/pkg_path/data_manage" value="$(find data_manage)" />
-    <param name="/data_manage/host" value="rm-2zeda02kh06843ewrwo.mysql.rds.aliyuncs.com" />
-    <param name="/data_manage/user" value="ucwxb" />
-    <param name="/data_manage/password" value="XYcstp123" />
-    <param name="/data_manage/db_name" value="trash_sort" />
-    <param name="/data_manage/port" value="3306" />
-    <param name="/data_manage/charset" value="utf-8" />
-    <node name = "data_manage_node" pkg = "data_manage" type="data_manage_node.py" output = "screen"/>
-
+    <param name="/pkg_path/trashsql" value="$(find trashsql)" />
+    <param name="/trashsql/host" value="rm-2zeda02kh06843ewrwo.mysql.rds.aliyuncs.com" />
+    <param name="/trashsql/user" value="ucwxb" />
+    <param name="/trashsql/password" value="XYcstp123" />
+    <param name="/trashsql/db_name" value="trash_sort" />
+    <param name="/trashsql/port" value="3306" />
+    <param name="/trashsql/charset" value="utf8" />
+    <node name = "data_manage_node" pkg = "trashsql" type="data_manage_node.py" output = "screen"/>
+    <node name = "test_sql_node" pkg = "trashsql" type="testSql.py" output = "screen"/>
 </launch>

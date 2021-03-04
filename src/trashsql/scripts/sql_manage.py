@@ -4,6 +4,8 @@ import pymysql
 import datetime
 import cv2
 import rospy
+import numpy as np
+from trashsql.msg import sqlres
 class filter_sql_cmd:
     def create_sql(self):
         pass
@@ -28,28 +30,35 @@ class sql_manage:
     
     def add_data(self,src_img,detect_img,detect_res,detect_res_string):
         _time = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-        sql="INSERT INTO trash (src_img,detect_img,detect_res,detect_res_string,createTime) VALUES  (%s,%s,%s,%s,%s)"
+        sql="INSERT INTO trash (src_img,detect_img,detect_res,detect_res_string,create_time) VALUES  (%s,%s,%s,%s,%s)"
         param = (src_img,detect_img,detect_res,detect_res_string,_time)
         self.cursor.execute(sql , param)
         self.db.commit()
+        return 1
 
-    def get_data(self):
+    def handle_get_image(self,img):
+        img= np.fromstring(img,np.uint8)
+        img = img.flatten()
+        return img
+
+    def get_data(self,new_data_manage):
         sql= "SELECT * FROM trash"
         self.cursor.execute(sql)
         results = self.cursor.fetchall()
-        image = results[-1][1]
-        f = open("res.mp4","wb")
-        f.write(image)
-        f.close()
-        return
         for result in results:
-            image = result[1]
-            
-            
-            f.close()
-            # print(type(),type(result[4]))
-            break
-        # pass
+            new_sqlres = sqlres()
+            new_sqlres.id = result[0]
+            new_sqlres.src_img = self.handle_get_image(result[1])
+            new_sqlres.detect_img = self.handle_get_image(result[2])
+            new_sqlres.create_time = str(result[3])
+            new_sqlres.detect_res = result[4]
+            new_sqlres.detect_res_string = result[5]
+            new_data_manage.res.append(new_sqlres)
+        new_data_manage.status = 1
+        return new_data_manage
+        # f = open("res.mp4","wb")
+        # f.write(image)
+        # f.close()
 
     def delete_data(self,select_id):
         sql = "DELETE FROM trash WHERE id='{}'".format(select_id)

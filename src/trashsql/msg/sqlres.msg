@@ -1,8 +1,6 @@
-string cmd
+uint16 id
 uint32[] src_img
 uint32[] detect_img
 uint16 detect_res
 string detect_res_string
----
-uint8 status
-sqlres[] res
+string create_time
