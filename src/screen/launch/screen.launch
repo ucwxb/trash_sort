@@ -1,0 +1,7 @@
+<launch>
+
+
+    <rosparam file="$(find screen)/yaml/main.yaml" command="load" />
+    <param name="/pkg_path/screen" value="$(find screen)"/>
+	<node name="screen_node" pkg="screen" type="screen_main.py" output="screen"/>
+</launch>
